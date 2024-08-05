@@ -7,9 +7,6 @@ defmodule Hello.Application do
   def start(_type, _args) do
     children = [
       HelloWeb.Telemetry,
-      Hello.Repo,
-      {DNSCluster,
-       query: Application.get_env(:hello, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: Hello.PubSub},
       {Finch, name: Hello.Finch},
       HelloWeb.Endpoint
