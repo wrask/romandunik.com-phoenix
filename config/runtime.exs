@@ -17,22 +17,3 @@ config :hello, HelloWeb.Endpoint,
   secret_key_base: System.fetch_env!("SECRET_KEY_BASE"),
   # It is completely safe to hard code and use this salt value.
   live_view: [signing_salt: "k4yfnQW4r"]
-
-db_user = System.get_env("POSTGRES_USER", "hello")
-database = System.get_env("POSTGRES_DB", db_user)
-
-database =
-  if config_env() == :test do
-    "#{database}_test#{System.get_env("MIX_TEST_PARTITION")}"
-  else
-    database
-  end
-
-config :hello, Hello.Repo,
-  url: System.get_env("DATABASE_URL"),
-  username: db_user,
-  password: System.get_env("POSTGRES_PASSWORD", "password"),
-  database: database,
-  hostname: System.get_env("POSTGRES_HOST", "postgres"),
-  port: String.to_integer(System.get_env("POSTGRES_PORT", "5432")),
-  pool_size: String.to_integer(System.get_env("POSTGRES_POOL", "15"))

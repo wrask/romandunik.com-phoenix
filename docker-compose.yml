@@ -7,10 +7,6 @@ x-app: &default-app
       - "GID=${GID:-1000}"
       - "MIX_ENV=${MIX_ENV:-prod}"
       - "NODE_ENV=${NODE_ENV:-production}"
-  depends_on:
-    postgres:
-      condition: "service_started"
-      required: false
   env_file:
     - ".env"
   restart: "${DOCKER_RESTART_POLICY:-unless-stopped}"
@@ -37,23 +33,6 @@ x-assets: &default-assets
     - ".:/app"
 
 services:
-  postgres:
-    deploy:
-      resources:
-        limits:
-          cpus: "${DOCKER_POSTGRES_CPUS:-0}"
-          memory: "${DOCKER_POSTGRES_MEMORY:-0}"
-    environment:
-      POSTGRES_USER: "${POSTGRES_USER}"
-      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
-      # POSTGRES_DB: "${POSTGRES_DB}"
-    image: "postgres:16.3-bookworm"
-    profiles: ["postgres"]
-    restart: "${DOCKER_RESTART_POLICY:-unless-stopped}"
-    stop_grace_period: "3s"
-    volumes:
-      - "postgres:/var/lib/postgresql/data"
-
   web:
     <<: *default-app
     deploy:

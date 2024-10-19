@@ -30,7 +30,6 @@ defmodule Hello.MixProject do
     [
       {:bandit, "1.5.7"},
       {:credo, "1.7.7", only: [:dev, :test], runtime: false},
-      {:dns_cluster, "~> 0.1.3"},
       {:ecto_sql, "3.11.3"},
       {:excoveralls, "0.18.2", only: [:dev, :test]},
       {:finch, "0.18.0"},
@@ -45,8 +44,6 @@ defmodule Hello.MixProject do
       {:phoenix_live_dashboard, "0.8.4"},
       {:phoenix_live_reload, "1.5.3", only: :dev},
       {:phoenix_live_view, "0.20.17"},
-      {:postgrex, "0.18.0"},
-      {:swoosh, "1.16.10"},
       {:telemetry_metrics, "1.0.0"},
       {:telemetry_poller, "1.1.0"}
     ]
