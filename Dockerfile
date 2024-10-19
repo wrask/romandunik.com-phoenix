@@ -28,7 +28,7 @@ COPY --chown=node:node . ..
 RUN mkdir -p /app/priv/static
 
 ###############################################################################
-FROM elixir:1.17.2-slim AS dev
+FROM elixir:1.17.3-slim AS dev
 
 WORKDIR /app
 
