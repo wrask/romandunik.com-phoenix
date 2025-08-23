@@ -5,7 +5,7 @@ defmodule Hello.MixProject do
     [
       app: :hello,
       version: "0.1.0",
-      elixir: "~> 1.13",
+      elixir: "~> 1.18",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       build_path: "/mix/_build",
@@ -13,7 +13,8 @@ defmodule Hello.MixProject do
       aliases: aliases(),
       deps: deps(),
       test_coverage: [tool: ExCoveralls],
-      releases: releases()
+      releases: releases(),
+      listeners: [Phoenix.CodeReloader]
     ]
   end
 
@@ -29,24 +30,25 @@ defmodule Hello.MixProject do
 
   defp deps do
     [
-      {:bandit, "1.5.7"},
-      {:credo, "1.7.7", only: [:dev, :test], runtime: false},
-      {:ecto_sql, "3.11.3"},
-      {:excoveralls, "0.18.2", only: [:dev, :test]},
-      {:finch, "0.18.0"},
-      {:floki, "0.36.2", only: :test},
-      {:gettext, "0.24.0"},
-      {:heroicons, "0.5.5"},
+      {:bandit, "1.8.0"},
+      {:credo, "1.7.12", only: [:dev, :test], runtime: false},
+      {:earmark, "1.4.48"},
+      {:ecto_sql, "3.13.2"},
+      {:excoveralls, "0.18.5", only: [:dev, :test]},
+      {:finch, "0.20.0"},
+      {:floki, "0.38.0", only: :test},
+      {:gettext, "0.26.2"},
+      {:heroicons, "0.5.6"},
       {:jason, "1.4.4"},
-      {:nimble_publisher, "1.1.0"},
-      {:phoenix, "1.7.14"},
-      {:phoenix_ecto, "4.6.2"},
-      {:phoenix_html, "4.1.1"},
-      {:phoenix_live_dashboard, "0.8.4"},
-      {:phoenix_live_reload, "1.5.3", only: :dev},
-      {:phoenix_live_view, "0.20.17"},
-      {:telemetry_metrics, "1.0.0"},
-      {:telemetry_poller, "1.1.0"}
+      {:nimble_publisher, "1.1.1"},
+      {:phoenix, "1.8.0"},
+      {:phoenix_ecto, "4.6.5"},
+      {:phoenix_html, "4.2.1"},
+      {:phoenix_live_dashboard, "0.8.7"},
+      {:phoenix_live_reload, "1.6.0", only: :dev},
+      {:phoenix_live_view, "1.1.8"},
+      {:telemetry_metrics, "1.1.0"},
+      {:telemetry_poller, "1.3.0"}
     ]
   end
 

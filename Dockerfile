@@ -55,6 +55,8 @@ ENV MIX_ENV="${MIX_ENV}" \
 
 COPY --chown=elixir:elixir mix.* ./
 
+RUN mix deps.clean --all
+
 RUN if [ "${MIX_ENV}" = "dev" ]; then \
   HEX_HTTP_CONCURRENCY=1 HEX_HTTP_TIMEOUT=120 mix deps.get; \
   else HEX_HTTP_CONCURRENCY=1 HEX_HTTP_TIMEOUT=120 mix deps.get --only "${MIX_ENV}"; fi

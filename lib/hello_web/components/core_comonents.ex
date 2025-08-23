@@ -17,7 +17,7 @@ defmodule HelloWeb.CoreComponents do
   use Phoenix.Component
 
   alias Phoenix.LiveView.JS
-  import HelloWeb.Gettext
+  use Gettext, backend: Hello.Gettext
 
   @doc """
   Renders a modal.
