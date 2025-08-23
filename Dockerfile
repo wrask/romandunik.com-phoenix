@@ -1,4 +1,4 @@
-FROM node:20.6.1-bookworm-slim AS assets
+FROM node:24.6-trixie-slim AS assets
 
 WORKDIR /app/assets
 
@@ -30,7 +30,7 @@ RUN if [ "${NODE_ENV}" != "development" ]; then \
 
 ###############################################################################
 
-FROM elixir:1.17.3-slim AS dev
+FROM elixir:1.18.3-slim AS dev
 
 WORKDIR /app
 
@@ -54,8 +54,10 @@ ENV MIX_ENV="${MIX_ENV}" \
     USER="elixir"
 
 COPY --chown=elixir:elixir mix.* ./
+
 RUN if [ "${MIX_ENV}" = "dev" ]; then \
-  mix deps.get; else mix deps.get --only "${MIX_ENV}"; fi
+  HEX_HTTP_CONCURRENCY=1 HEX_HTTP_TIMEOUT=120 mix deps.get; \
+  else HEX_HTTP_CONCURRENCY=1 HEX_HTTP_TIMEOUT=120 mix deps.get --only "${MIX_ENV}"; fi
 
 COPY --chown=elixir:elixir config/config.exs config/"${MIX_ENV}".exs config/
 RUN mix deps.compile
@@ -76,7 +78,7 @@ CMD ["iex", "-S", "mix", "phx.server"]
 
 ###############################################################################
 
-FROM elixir:1.17.3-slim AS prod
+FROM elixir:1.18.3-slim AS prod
 
 WORKDIR /app
 
