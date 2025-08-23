@@ -12,7 +12,8 @@ defmodule Hello.MixProject do
       deps_path: "/mix/deps",
       aliases: aliases(),
       deps: deps(),
-      test_coverage: [tool: ExCoveralls]
+      test_coverage: [tool: ExCoveralls],
+      releases: releases()
     ]
   end
 
@@ -55,6 +56,14 @@ defmodule Hello.MixProject do
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"]
+    ]
+  end
+
+  defp releases do
+    [
+      hello: [
+        include_executables_for: [:unix]
+      ]
     ]
   end
 end

@@ -2,6 +2,10 @@
 assets/node_modules/
 priv/static/
 
+_build/
+deps/
+mix/
+
 .dockerignore
 .env*
 !.env.example
