@@ -5,7 +5,7 @@ defmodule Hello.Blog do
     build: Post,
     from: "./posts/**/*.md",
     as: :posts,
-    highlighters: [:makeup_elixir, :makeup_erlang]
+    highlighters: [:makeup_elixir]
 
   @posts Enum.sort_by(@posts, & &1.date, {:desc, Date})
   @tags @posts |> Enum.flat_map(& &1.tags) |> Enum.uniq() |> Enum.sort()

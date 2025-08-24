@@ -41,6 +41,8 @@ defmodule Hello.MixProject do
       {:heroicons, "0.5.6"},
       {:jason, "1.4.4"},
       {:nimble_publisher, "1.1.1"},
+      {:makeup, "~> 1.0"},
+      {:makeup_elixir, "1.0.1"},
       {:phoenix, "1.8.0"},
       {:phoenix_ecto, "4.6.5"},
       {:phoenix_html, "4.2.1"},
