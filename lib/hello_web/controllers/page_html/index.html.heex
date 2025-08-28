@@ -3,7 +3,17 @@
     <article class="
     space-y-2 xl:grid xl:grid-cols-4 xl:items-stretch xl:gap-x-6 xl:space-y-0
     border border-gray-300 rounded-md px-7 py-5 mx-7 bg-[#f8f8f2]">
-      <img :if={post.image} src={post.image} alt={post.title} class="xl:col-span-1 xl:h-full w-40 h-28 rounded-md object-cover" />
+      <div :if={post.image} class="relative xl:col-span-1 xl:h-full w-50 h-28 rounded-md overflow-hidden">
+        <img src={post.image} alt={post.title} class="h-full w-full object-cover" />
+        <div class="absolute inset-0 bg-black/40"></div>
+        <ul class="absolute bottom-2 left-2 right-2 flex flex-wrap gap-2">
+          <li :for={tag <- post.tags} class="">
+            <.link navigate={~p"/tags/#{tag}"} class="text-xs font-semibold uppercase text-white/90 bg-black/40 backdrop-blur px-2 py-0.5 rounded">
+              <%= tag %>
+            </.link>
+          </li>
+        </ul>
+      </div>
       <div class="space-y-3 xl:col-span-3">
         <div>
           <h3 class="text-2xl font-bold leading-8 tracking-tight">
@@ -20,7 +30,7 @@
         <div class="prose max-w-none text-black/50">
           <%= post.description %>
         </div>
-        <ul class="flex flex-wrap">
+        <ul :if={!post.image} class="flex flex-wrap">
           <li :for={tag <- post.tags} class="mr-3">
             <.link navigate={~p"/tags/#{tag}"} class="text-sm font-light uppercase text-black/50">
               <%= tag %>
