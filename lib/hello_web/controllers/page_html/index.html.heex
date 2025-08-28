@@ -1,8 +1,9 @@
 <ul>
   <li :for={post <- @posts} class="py-4">
     <article class="
-    space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0
+    space-y-2 xl:grid xl:grid-cols-4 xl:items-stretch xl:gap-x-6 xl:space-y-0
     border border-gray-300 rounded-md px-7 py-5 mx-7 bg-[#f8f8f2]">
+      <img :if={post.image} src={post.image} alt={post.title} class="xl:col-span-1 xl:h-full w-40 h-28 rounded-md object-cover" />
       <div class="space-y-3 xl:col-span-3">
         <div>
           <h3 class="text-2xl font-bold leading-8 tracking-tight">

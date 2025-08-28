@@ -1,6 +1,6 @@
 defmodule Hello.Blog.Post do
   @enforce_keys [:id, :author, :title, :body, :description, :tags, :date, :path]
-  defstruct [:id, :author, :title, :body, :description, :tags, :date, :path]
+  defstruct [:id, :author, :title, :body, :description, :tags, :date, :path, :image]
 
   def build(filename, attrs, body) do
     path = Path.rootname(filename)

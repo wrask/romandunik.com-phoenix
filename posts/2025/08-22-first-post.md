@@ -1,8 +1,9 @@
 %{
-  title: "First Post",
+  title: "Shulz gravel",
   author: "Roman Dunik",
-  tags: ~w(april fools),
-  description: "Let's write the first post"
+  tags: ~w(sport bike shulz),
+  description: "Let's write the first post",
+  image: "/images/shulz.webp"
 }
 ---
 

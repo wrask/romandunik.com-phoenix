@@ -1,8 +1,9 @@
 %{
-  title: "Second Post",
+  title: "Red Paddle supboards",
   author: "Roman Dunik",
-  tags: ~w(april real),
-  description: "Let's write the second post"
+  tags: ~w(sport supboard redpaddle),
+  description: "Let's write the second post",
+  image: "/images/red-paddle.webp"
 }
 ---
 
