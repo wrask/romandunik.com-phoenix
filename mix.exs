@@ -34,6 +34,7 @@ defmodule Hello.MixProject do
       {:credo, "1.7.12", only: [:dev, :test], runtime: false},
       {:earmark, "1.4.48"},
       {:ecto_sql, "3.13.2"},
+      {:postgrex, "0.21.1"},
       {:excoveralls, "0.18.5", only: [:dev, :test]},
       {:finch, "0.20.0"},
       {:floki, "0.38.0", only: :test},

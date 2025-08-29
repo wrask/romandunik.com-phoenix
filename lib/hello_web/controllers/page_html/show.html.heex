@@ -4,6 +4,10 @@
       <dt class="sr-only">Published on</dt>
       <dd class="text-base font-medium leading-6 text-white/50">
         <time datetime={@post.date}><%= @post.date %></time>
+        <span class="ml-3 text-white/50">
+          <Heroicons.eye class="w-5 h-5 inline align-text-bottom mr-1" />
+          <%= @view_count %>
+        </span>
       </dd>
     </p>
     <h1 class="text-5xl font-extrabold"><%= @post.title %></h1>

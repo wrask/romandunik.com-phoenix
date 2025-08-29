@@ -13,29 +13,40 @@ defmodule HelloWeb.PageController do
   end
 
   def index(conn, _params) do
+    posts = Hello.Blog.list_posts()
+    view_counts = Hello.Blog.get_post_view_counts(Enum.map(posts, & &1.id))
+
     conn
     |> render(:index,
-      Map.put(common_variables(),
-        :posts, Hello.Blog.list_posts()
-      )
+      common_variables()
+      |> Map.put(:posts, posts)
+      |> Map.put(:view_counts, view_counts)
     )
   end
 
   def show(conn, %{"slug" => slug}) do
+    post = Hello.Blog.get_post_by_id!(slug)
+
+    Hello.Blog.increment_post_view!(post.id)
+    view_count = Hello.Blog.get_post_view_count(post.id)
+
     conn
     |> render(:show,
-      Map.put(common_variables(),
-        :post, Hello.Blog.get_post_by_id!(slug)
-      )
+      common_variables()
+      |> Map.put(:post, post)
+      |> Map.put(:view_count, view_count)
     )
   end
 
   def tags(conn, %{"tag" => tag}) do
+    posts = Hello.Blog.list_posts_by_tag!(tag)
+    view_counts = Hello.Blog.get_post_view_counts(Enum.map(posts, & &1.id))
+
     conn
     |> render(:index,
-      Map.put(common_variables(),
-        :posts, Hello.Blog.list_posts_by_tag!(tag)
-      )
+      common_variables()
+      |> Map.put(:posts, posts)
+      |> Map.put(:view_counts, view_counts)
     )
   end
 end

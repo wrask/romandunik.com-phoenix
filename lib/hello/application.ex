@@ -6,6 +6,7 @@ defmodule Hello.Application do
   @impl true
   def start(_type, _args) do
     children = [
+      Hello.Repo,
       HelloWeb.Telemetry,
       {Phoenix.PubSub, name: Hello.PubSub},
       {Finch, name: Hello.Finch},

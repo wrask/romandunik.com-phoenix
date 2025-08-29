@@ -24,6 +24,10 @@
           <dl>
             <dd class="text-xs font-light leading-6 text-gray-500">
               <time datetime={post.date}><%= post.date %></time>
+              <div class="mt-1 text-gray-500">
+                <Heroicons.eye class="w-4 h-4 inline align-text-bottom mr-1" />
+                <%= Map.get(@view_counts || %{}, post.id, 0) %>
+              </div>
             </dd>
           </dl>
         </div>
