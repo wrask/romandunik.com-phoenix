@@ -49,7 +49,7 @@ defmodule Hello.MixProject do
       {:phoenix_html, "4.2.1"},
       {:phoenix_live_dashboard, "0.8.7"},
       {:phoenix_live_reload, "1.6.1", only: :dev},
-      {:phoenix_live_view, "1.1.10"},
+      {:phoenix_live_view, "1.1.11"},
       {:telemetry_metrics, "1.1.0"},
       {:telemetry_poller, "1.3.0"}
     ]
