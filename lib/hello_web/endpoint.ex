@@ -23,6 +23,11 @@ defmodule HelloWeb.Endpoint do
     gzip: false,
     only: HelloWeb.static_paths()
 
+  if Code.ensure_loaded?(Tidewave) do
+    plug Tidewave,
+      allow_remote_access: true
+  end
+
   if code_reloading? do
     socket "/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket
     plug Phoenix.LiveReloader

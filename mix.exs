@@ -34,24 +34,25 @@ defmodule Hello.MixProject do
       {:credo, "1.7.12", only: [:dev, :test], runtime: false},
       {:earmark, "1.4.48"},
       {:ecto_sql, "3.13.2"},
-      {:postgrex, "0.21.1"},
       {:excoveralls, "0.18.5", only: [:dev, :test]},
       {:finch, "0.20.0"},
       {:floki, "0.38.0", only: :test},
       {:gettext, "0.26.2"},
       {:heroicons, "0.5.6"},
       {:jason, "1.4.4"},
-      {:nimble_publisher, "1.1.1"},
       {:makeup, "~> 1.0"},
       {:makeup_elixir, "1.0.1"},
+      {:nimble_publisher, "1.1.1"},
       {:phoenix, "1.8.1"},
       {:phoenix_ecto, "4.6.5"},
       {:phoenix_html, "4.2.1"},
       {:phoenix_live_dashboard, "0.8.7"},
       {:phoenix_live_reload, "1.6.1", only: :dev},
       {:phoenix_live_view, "1.1.11"},
+      {:postgrex, "0.21.1"},
       {:telemetry_metrics, "1.1.0"},
-      {:telemetry_poller, "1.3.0"}
+      {:telemetry_poller, "1.3.0"},
+      {:tidewave, "~> 0.4", only: :dev}
     ]
   end
 
