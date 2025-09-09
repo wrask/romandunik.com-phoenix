@@ -51,8 +51,7 @@ defmodule Hello.MixProject do
       {:phoenix_live_view, "1.1.11"},
       {:postgrex, "0.21.1"},
       {:telemetry_metrics, "1.1.0"},
-      {:telemetry_poller, "1.3.0"},
-      {:tidewave, "~> 0.4", only: :dev}
+      {:telemetry_poller, "1.3.0"}
     ]
   end
 
