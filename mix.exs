@@ -37,7 +37,7 @@ defmodule Hello.MixProject do
       {:excoveralls, "0.18.5", only: [:dev, :test]},
       {:finch, "0.20.0"},
       {:floki, "0.38.0", only: :test},
-      {:gettext, "0.26.2"},
+      {:gettext, "1.0.0"},
       {:heroicons, "0.5.6"},
       {:jason, "1.4.4"},
       {:makeup, "~> 1.0"},
@@ -48,7 +48,7 @@ defmodule Hello.MixProject do
       {:phoenix_html, "4.2.1"},
       {:phoenix_live_dashboard, "0.8.7"},
       {:phoenix_live_reload, "1.6.1", only: :dev},
-      {:phoenix_live_view, "1.1.11"},
+      {:phoenix_live_view, "1.1.12"},
       {:postgrex, "0.21.1"},
       {:telemetry_metrics, "1.1.0"},
       {:telemetry_poller, "1.3.0"}

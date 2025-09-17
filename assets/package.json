@@ -4,7 +4,7 @@
   "dependencies": {
     "phoenix": "1.8.1",
     "phoenix_html": "4.2.1",
-    "phoenix_live_view": "1.1.11",
+    "phoenix_live_view": "1.1.12",
     "topbar": "3.0.0"
   },
   "devDependencies": {
