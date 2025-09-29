@@ -16,7 +16,7 @@ defmodule HelloWeb.PageController do
 
   def index(conn, _params) do
     posts = Blog.list_posts()
-    view_counts = Blog.get_post_view_counts(Enum.map(posts, & &1.id))
+    view_counts = view_counts(posts)
 
     conn
     |> render(:index,
@@ -29,7 +29,8 @@ defmodule HelloWeb.PageController do
   def show(conn, %{"slug" => slug}) do
     post = Blog.get_post_by_id!(slug)
 
-    Hello.Blog.increment_post_view!(post.id)
+    Blog.increment_post_view!(post.id)
+    
     view_count = Blog.get_post_view_count(post.id)
 
     conn
@@ -42,7 +43,7 @@ defmodule HelloWeb.PageController do
 
   def tags(conn, %{"tag" => tag}) do
     posts = Blog.list_posts_by_tag!(tag)
-    view_counts = Blog.get_post_view_counts(Enum.map(posts, & &1.id))
+    view_counts = view_counts(posts)
 
     conn
     |> render(:index,
@@ -50,5 +51,11 @@ defmodule HelloWeb.PageController do
       |> Map.put(:posts, posts)
       |> Map.put(:view_counts, view_counts)
     )
+  end
+
+  def view_counts(posts) do
+    posts
+      |> Enum.map(& &1.id)
+      |> Blog.get_post_view_counts()
   end
 end
