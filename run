@@ -16,6 +16,21 @@ fi
 # Helper functions start with _ and aren't listed in this script's help menu.
 # -----------------------------------------------------------------------------
 
+function up {
+  # Start local environment
+  docker compose up -d
+}
+
+function down {
+  # Stop local environment
+  docker compose down
+}
+
+function build {
+  # Build and start up local environment
+  docker compose up --build -d
+}
+
 function _dc {
   docker compose "${DC}" ${TTY} "${@}"
 }

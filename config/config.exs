@@ -21,7 +21,7 @@ config :hello, HelloWeb.Endpoint,
   pubsub_server: Hello.PubSub,
   live_view: [signing_salt: "aC4Hk8o2"],
   owner_site_url: "https://romandunik.com",
-  repository_url: "https://github.com/wrask/phoenix-dockerized"
+  repository_url: "https://github.com/wrask/romandunik.com-phoenix"
 
 config :hello, Hello.Repo, adapter: Ecto.Adapters.Postgres
 
