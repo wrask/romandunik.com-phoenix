@@ -20,8 +20,8 @@ RUN yarn install && yarn cache clean
 
 ARG NODE_ENV="production"
 ENV NODE_ENV="${NODE_ENV}" \
-    PATH="${PATH}:/node_modules/.bin" \
-    USER="node"
+  PATH="${PATH}:/node_modules/.bin" \
+  USER="node"
 
 COPY --chown=node:node . ..
 
@@ -30,7 +30,7 @@ RUN if [ "${NODE_ENV}" != "development" ]; then \
 
 ###############################################################################
 
-FROM elixir:1.19.0-slim AS dev
+FROM elixir:1.19.1-slim AS dev
 
 WORKDIR /app
 
@@ -51,7 +51,7 @@ RUN mix local.hex --force && mix local.rebar --force
 
 ARG MIX_ENV="prod"
 ENV MIX_ENV="${MIX_ENV}" \
-    USER="elixir"
+  USER="elixir"
 
 COPY --chown=elixir:elixir mix.* ./
 
