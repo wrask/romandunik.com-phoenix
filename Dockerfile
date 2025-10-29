@@ -80,7 +80,7 @@ CMD ["iex", "-S", "mix", "phx.server"]
 
 ###############################################################################
 
-FROM elixir:1.19.0-slim AS prod
+FROM elixir:1.19.1-slim AS prod
 
 WORKDIR /app
 
