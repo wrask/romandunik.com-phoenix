@@ -203,6 +203,11 @@ function ci:test {
   test "${@}"
 }
 
+function docker:outdated {
+  # Check if Dockerfile Node/Elixir image tags have newer versions available
+  bash bin/check-versions "${1:-Dockerfile}"
+}
+
 function help {
   printf "%s <task> [args]\n\nTasks:\n" "${0}"
 
