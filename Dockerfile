@@ -1,4 +1,4 @@
-FROM node:25.1.0-trixie-slim AS assets
+FROM node:25.2.0-trixie-slim AS assets
 
 WORKDIR /app/assets
 
@@ -30,7 +30,7 @@ RUN if [ "${NODE_ENV}" != "development" ]; then \
 
 ###############################################################################
 
-FROM elixir:1.19.1-slim AS dev
+FROM elixir:1.19.3-slim AS dev
 
 WORKDIR /app
 
@@ -80,7 +80,7 @@ CMD ["iex", "-S", "mix", "phx.server"]
 
 ###############################################################################
 
-FROM elixir:1.19.1-slim AS prod
+FROM elixir:1.19.3-slim AS prod
 
 WORKDIR /app
 
