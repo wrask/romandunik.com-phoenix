@@ -706,20 +706,20 @@ path-parse@^1.0.6:
   resolved "https://registry.yarnpkg.com/path-parse/-/path-parse-1.0.7.tgz#fbc114b60ca42b30d9daf5858e4bd68bbedb6735"
   integrity sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==
 
-phoenix@1.8.1:
-  version "1.8.1"
-  resolved "https://registry.yarnpkg.com/phoenix/-/phoenix-1.8.1.tgz#cc247b29f844f22d54291b558689e2381ed8cc43"
-  integrity sha512-7i2a5f5y0Qhzi2g/+iuaGr4TzRt5ucqI0JeV2Q9K0swqY8L2C7CLR66RcGCpcQKGOY73B5GLKMYEl13o/9l/Cg==
+phoenix@1.8.2:
+  version "1.8.2"
+  resolved "https://registry.yarnpkg.com/phoenix/-/phoenix-1.8.2.tgz#d97577a7011b1d76429471ee5e1fe422d54b4c8a"
+  integrity sha512-IcKJ4XNviIpWrQEhyg5oZAI4ajwtnbTpNh257aI8hQig85mS6XgL8cC4yoqdLPJPUSskpX2Hjzwa408S1ZTdQA==
 
 phoenix_html@4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/phoenix_html/-/phoenix_html-4.3.0.tgz#f6cd15b6db2127c2ce945a4bbc7df10a1a34f982"
   integrity sha512-6vnR2Y7KxEPX1DdN59AuO98TTFtsYBqfUiUOo3NY6vyVp3o94RTawdaKtELFOKfiUD7LCEclBcpCltJM2GWuKw==
 
-phoenix_live_view@1.1.17:
-  version "1.1.17"
-  resolved "https://registry.yarnpkg.com/phoenix_live_view/-/phoenix_live_view-1.1.17.tgz#c72fd1c6d0a1142365c48552bec0ac0660411062"
-  integrity sha512-8LO0eLHJlBXAFgtcoQDdbkbHfEDzDHY5RapAmn9U5lVP+6y+VvRuLF8qLpwRgbT7rb1Z9acrldsYATtpI6p/yQ==
+phoenix_live_view@1.1.18:
+  version "1.1.18"
+  resolved "https://registry.yarnpkg.com/phoenix_live_view/-/phoenix_live_view-1.1.18.tgz#8567bc659674ca9ee1f85b3dc6c825f02337d05d"
+  integrity sha512-pqcOEQOEZ+BuP2DquJxPn1C3mxBWaEdov/eLeegdcrSdNNgpgdRw2oYC3HUb9LUyvXHCnj3NMvmmuccq05lrMA==
   dependencies:
     morphdom "2.7.7"
 
