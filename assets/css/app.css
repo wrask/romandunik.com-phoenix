@@ -3,3 +3,4 @@
  *   https://tailwindcss.com/docs/extracting-components
 */
 @import "tailwindcss" source("/app");
+@plugin "@tailwindcss/typography";
