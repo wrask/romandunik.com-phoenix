@@ -32,7 +32,7 @@
           </dl>
         </div>
         <div class="prose max-w-none text-black/50">
-          <%= post.description %>
+          <%= raw(post.description) %>
         </div>
         <ul :if={!post.image} class="flex flex-wrap">
           <li :for={tag <- post.tags} class="mr-3">
