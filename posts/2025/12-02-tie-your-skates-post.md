@@ -2,7 +2,9 @@
   title: "Tie Your Skates Good",
   author: "Roman Dunik",
   tags: ~w(sport skating lacing),
-  description: "2 месяца катания и шнуровка",
+  description: "
+  2 месяца катания и шнуровка <br> ⛸️ day 62
+  ",
   image: "/images/lacing-skates.webp"
 }
 ---
