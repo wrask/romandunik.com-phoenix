@@ -38,7 +38,7 @@ defmodule Hello.MixProject do
       {:finch, "0.20.0"},
       {:floki, "0.38.0", only: :test},
       {:gettext, "1.0.2"},
-      {:heroicons, "0.5.6"},
+      {:heroicons, "0.5.7"},
       {:jason, "1.4.4"},
       {:makeup, "~> 1.0"},
       {:makeup_elixir, "1.0.1"},
