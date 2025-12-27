@@ -2,7 +2,7 @@
   title: "Outside edge and sharpening",
   author: "Roman Dunik",
   tags: ~w(sport skating drills),
-  description: "Как заточка влияет нв упрвление внешним ребром <br> ⛸️ day 73
+  description: "Как заточка влияет на управление внешним ребром <br> ⛸️ day 73
   ",
   image: "/images/hollow-size.webp"
 }
