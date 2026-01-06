@@ -2,21 +2,11 @@ defmodule HelloWeb.Router do
   use HelloWeb, :router
 
   defp put_missed_security_headers(conn, _opts) do
-    endpoint_config = Application.get_env(:hello, HelloWeb.Endpoint, [])
-    url_config = Keyword.get(endpoint_config, :url, [])
-
-    conn =
-      if Keyword.get(url_config, :scheme) == "https" do
-        Plug.Conn.put_resp_header(
-          conn,
-          "strict-transport-security",
-          "max-age=31536000; includeSubDomains; preload"
-        )
-      else
-        conn
-      end
-
     conn
+    |> Plug.Conn.put_resp_header(
+      "strict-transport-security",
+      "max-age=31536000; includeSubDomains; preload"
+    )
     |> Plug.Conn.put_resp_header("x-frame-options", "SAMEORIGIN")
     |> Plug.Conn.put_resp_header("x-xss-protection", "1; mode=block")
   end
