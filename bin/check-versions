@@ -11,221 +11,227 @@ set -o nounset
 DOCKERFILE_PATH="${1:-$(git rev-parse --show-toplevel 2>/dev/null || echo .)/Dockerfile}"
 
 if [ ! -f "${DOCKERFILE_PATH}" ]; then
-  echo "Dockerfile not found at ${DOCKERFILE_PATH}" >&2
-  exit 1
+	echo "Dockerfile not found at ${DOCKERFILE_PATH}" >&2
+	exit 1
 fi
 
 if ! command -v curl >/dev/null 2>&1; then
-  echo "curl is required to run this check." >&2
-  exit 1
+	echo "curl is required to run this check." >&2
+	exit 1
 fi
 
 HAVE_JQ=0
 if command -v jq >/dev/null 2>&1; then
-  HAVE_JQ=1
+	HAVE_JQ=1
 fi
 
 function parse_image() {
-  local pattern="$1" # e.g., '^FROM node:'
-  # shellcheck disable=SC2002
-  awk -v pat="$pattern" 'BEGIN{IGNORECASE=1} $0 ~ pat {print $2}' "${DOCKERFILE_PATH}" | head -n1
+	local pattern="$1" # e.g., '^FROM node:'
+	# shellcheck disable=SC2002
+	awk -v pat="$pattern" 'BEGIN{IGNORECASE=1} $0 ~ pat {print $2}' "${DOCKERFILE_PATH}" | head -n1
 }
 
 function split_tag() {
-  # Input: image:tag (e.g., node:25.0-trixie-slim)
-  local ref="$1"
-  local image tag
-  image="${ref%%:*}"
-  tag="${ref#*:}"
-  echo "${image}" "${tag}"
+	# Input: image:tag (e.g., node:25.0-trixie-slim)
+	local ref="$1"
+	local image tag
+	image="${ref%%:*}"
+	tag="${ref#*:}"
+	echo "${image}" "${tag}"
 }
 
 function version_prefix() {
-  # Extract semver-ish prefix before the first '-' (e.g., 25.0 from 25.0-trixie-slim)
-  local tag="$1"
-  echo "${tag%%-*}"
+	# Extract semver-ish prefix before the first '-' (e.g., 25.0 from 25.0-trixie-slim)
+	local tag="$1"
+	echo "${tag%%-*}"
 }
 
 function tag_suffix() {
-  # Extract suffix after the first '-' (may be empty)
-  local tag="$1"
-  local suffix
-  if [[ "$tag" == *-* ]]; then
-    suffix="${tag#*-}"
-  else
-    suffix=""
-  fi
-  echo "$suffix"
+	# Extract suffix after the first '-' (may be empty)
+	local tag="$1"
+	local suffix
+	if [[ "$tag" == *-* ]]; then
+		suffix="${tag#*-}"
+	else
+		suffix=""
+	fi
+	echo "$suffix"
 }
 
 function minor_series() {
-  # Given version like 1.19.1 or 25.0 return minor series (major.minor)
-  local v="$1"
-  IFS='.' read -r a b _ <<<"$v"
-  if [[ -z "$b" ]]; then
-    echo "$a"
-  else
-    echo "$a.$b"
-  fi
+	# Given version like 1.19.1 or 25.0 return minor series (major.minor)
+	local v="$1"
+	IFS='.' read -r a b _ <<<"$v"
+	if [[ -z "$b" ]]; then
+		echo "$a"
+	else
+		echo "$a.$b"
+	fi
 }
 
 function major_series() {
-  # Given version like 1.19.1 or 25.0 return major (e.g., 1 or 25)
-  local v="$1"
-  IFS='.' read -r a _ <<<"$v"
-  echo "$a"
+	# Given version like 1.19.1 or 25.0 return major (e.g., 1 or 25)
+	local v="$1"
+	IFS='.' read -r a _ <<<"$v"
+	echo "$a"
 }
 
 function _dockerhub_list_tags() {
-  # Args: image name_prefix
-  # Prints all tag names that match Docker Hub's name filter, across all pages
-  local image="$1"
-  local name_prefix="$2" # e.g., 25.0 or 25
+	# Args: image name_prefix
+	# Prints all tag names that match Docker Hub's name filter, across all pages
+	local image="$1"
+	local name_prefix="$2" # e.g., 25.0 or 25
 
-  local url="https://hub.docker.com/v2/repositories/library/${image}/tags/?page_size=100&name=${name_prefix}"
-  local next_url="${url}"
-  local page
+	local url="https://hub.docker.com/v2/repositories/library/${image}/tags/?page_size=100&name=${name_prefix}"
+	local next_url="${url}"
+	local page
 
-  while [[ -n "${next_url}" ]]; do
-    page=$(curl -fsSL "${next_url}") || break
-    if [[ ${HAVE_JQ} -eq 1 ]]; then
-      echo "${page}" | jq -r '.results[].name'
-      next_url=$(echo "${page}" | jq -r '.next // ""')
-      if [[ "${next_url}" == "null" ]]; then next_url=""; fi
-    else
-      # Fallback: sed-based extraction
-      echo "${page}" | sed -n 's/.*"name":\s*"\([^"]\+\)".*/\1/p'
-      next_url=$(echo "${page}" | sed -n 's/.*"next":\s*"\([^"]*\)".*/\1/p')
-      # If no next or empty, stop
-      if [[ -z "${next_url}" ]]; then
-        break
-      fi
-    fi
-  done
+	while [[ -n "${next_url}" ]]; do
+		page=$(curl -fsSL "${next_url}") || break
+		if [[ ${HAVE_JQ} -eq 1 ]]; then
+			echo "${page}" | jq -r '.results[].name'
+			next_url=$(echo "${page}" | jq -r '.next // ""')
+			if [[ "${next_url}" == "null" ]]; then next_url=""; fi
+		else
+			# Fallback: sed-based extraction
+			echo "${page}" | sed -n 's/.*"name":\s*"\([^"]\+\)".*/\1/p'
+			next_url=$(echo "${page}" | sed -n 's/.*"next":\s*"\([^"]*\)".*/\1/p')
+			# If no next or empty, stop
+			if [[ -z "${next_url}" ]]; then
+				break
+			fi
+		fi
+	done
 }
 
 function latest_dockerhub_tag() {
-  # Args: image minor_series suffix
-  # Returns highest version in that minor series with optional matching suffix.
-  local image="$1"
-  local series="$2"   # e.g., 1.19 or 25.0
-  local suffix="$3"    # e.g., trixie-slim or slim or empty
+	# Args: image minor_series suffix
+	# Returns highest version in that minor series with optional matching suffix.
+	local image="$1"
+	local series="$2" # e.g., 1.19 or 25.0
+	local suffix="$3" # e.g., trixie-slim or slim or empty
 
-  # Fetch tag names across all pages using Docker Hub's name filter
-  local tags
-  tags=$(_dockerhub_list_tags "$image" "$series") || return 1
+	# Fetch tag names across all pages using Docker Hub's name filter
+	local tags
+	tags=$(_dockerhub_list_tags "$image" "$series") || return 1
 
-  # Filter by series and suffix
-  local filtered
-  if [[ -n "$suffix" ]]; then
-    filtered=$(echo "$tags" | grep -E "^${series}(\\.[0-9]+){0,2}-${suffix}$" || true)
-  else
-    filtered=$(echo "$tags" | grep -E "^${series}(\\.[0-9]+){0,2}$" || true)
-  fi
+	# Filter by series and suffix
+	local filtered
+	if [[ -n "$suffix" ]]; then
+		filtered=$(echo "$tags" | grep -E "^${series}(\\.[0-9]+){0,2}-${suffix}$" || true)
+	else
+		filtered=$(echo "$tags" | grep -E "^${series}(\\.[0-9]+){0,2}$" || true)
+	fi
 
-  if [[ -z "$filtered" ]]; then
-    echo "" && return 0
-  fi
+	if [[ -z "$filtered" ]]; then
+		echo "" && return 0
+	fi
 
-  # Extract versions, sort -V, pick highest
-  # Remove suffix and keep only version part
-  local best
-  best=$(echo "$filtered" | sed "s/-${suffix}$//" | sort -V | tail -n1)
+	# Extract versions, sort -V, pick highest
+	# Remove suffix and keep only version part
+	local best
+	best=$(echo "$filtered" | sed "s/-${suffix}$//" | sort -V | tail -n1)
 
-  if [[ -n "$suffix" ]]; then
-    echo "${best}-${suffix}"
-  else
-    echo "$best"
-  fi
+	if [[ -n "$suffix" ]]; then
+		echo "${best}-${suffix}"
+	else
+		echo "$best"
+	fi
 }
 
 function latest_dockerhub_tag_major() {
-  # Args: image major suffix
-  # Returns highest version in that major series with optional matching suffix.
-  local image="$1"
-  local major="$2"   # e.g., 1 or 25
-  local suffix="$3"  # e.g., trixie-slim or slim or empty
+	# Args: image major suffix
+	# Returns highest version in that major series with optional matching suffix.
+	local image="$1"
+	local major="$2"  # e.g., 1 or 25
+	local suffix="$3" # e.g., trixie-slim or slim or empty
 
-  local tags
-  tags=$(_dockerhub_list_tags "$image" "$major") || return 1
+	local tags
+	tags=$(_dockerhub_list_tags "$image" "$major") || return 1
 
-  local filtered
-  if [[ -n "$suffix" ]]; then
-    filtered=$(echo "$tags" | grep -E "^${major}(\\.[0-9]+){1,2}-${suffix}$" || true)
-  else
-    filtered=$(echo "$tags" | grep -E "^${major}(\\.[0-9]+){1,2}$" || true)
-  fi
+	local filtered
+	if [[ -n "$suffix" ]]; then
+		filtered=$(echo "$tags" | grep -E "^${major}(\\.[0-9]+){1,2}-${suffix}$" || true)
+	else
+		filtered=$(echo "$tags" | grep -E "^${major}(\\.[0-9]+){1,2}$" || true)
+	fi
 
-  if [[ -z "$filtered" ]]; then
-    echo "" && return 0
-  fi
+	if [[ -z "$filtered" ]]; then
+		echo "" && return 0
+	fi
 
-  local best
-  best=$(echo "$filtered" | sed "s/-${suffix}$//" | sort -V | tail -n1)
+	local best
+	best=$(echo "$filtered" | sed "s/-${suffix}$//" | sort -V | tail -n1)
 
-  if [[ -n "$suffix" ]]; then
-    echo "${best}-${suffix}"
-  else
-    echo "$best"
-  fi
+	if [[ -n "$suffix" ]]; then
+		echo "${best}-${suffix}"
+	else
+		echo "$best"
+	fi
 }
 
 function version_without_suffix() {
-  local tag="$1"
-  echo "${tag%%-*}"
+	local tag="$1"
+	echo "${tag%%-*}"
 }
 
 function max_version_tag() {
-  # Given 2 tags (without image), return the one with the higher version, keeping suffixes
-  local a="$1"
-  local b="$2"
-  if [[ -z "$a" ]]; then echo "$b"; return; fi
-  if [[ -z "$b" ]]; then echo "$a"; return; fi
-  local va vb pick
-  va=$(version_without_suffix "$a")
-  vb=$(version_without_suffix "$b")
-  pick=$(printf '%s\n%s\n' "$va" "$vb" | sort -V | tail -n1)
-  if [[ "$pick" == "$va" ]]; then echo "$a"; else echo "$b"; fi
+	# Given 2 tags (without image), return the one with the higher version, keeping suffixes
+	local a="$1"
+	local b="$2"
+	if [[ -z "$a" ]]; then
+		echo "$b"
+		return
+	fi
+	if [[ -z "$b" ]]; then
+		echo "$a"
+		return
+	fi
+	local va vb pick
+	va=$(version_without_suffix "$a")
+	vb=$(version_without_suffix "$b")
+	pick=$(printf '%s\n%s\n' "$va" "$vb" | sort -V | tail -n1)
+	if [[ "$pick" == "$va" ]]; then echo "$a"; else echo "$b"; fi
 }
 
 function compare_and_report() {
-  local ref_line_pattern="$1"
-  local label="$2" # Node or Elixir
+	local ref_line_pattern="$1"
+	local label="$2" # Node or Elixir
 
-  local ref
-  ref=$(parse_image "$ref_line_pattern") || true
-  if [[ -z "$ref" ]]; then
-    echo "- ${label}: not found in Dockerfile"
-    return
-  fi
+	local ref
+	ref=$(parse_image "$ref_line_pattern") || true
+	if [[ -z "$ref" ]]; then
+		echo "- ${label}: not found in Dockerfile"
+		return
+	fi
 
-  read -r image tag <<<"$(split_tag "$ref")"
-  local vpre suffix series latest_patch
-  vpre=$(version_prefix "$tag")
-  suffix=$(tag_suffix "$tag")
-  series=$(minor_series "$vpre")
-  latest_patch=$(latest_dockerhub_tag "$image" "$series" "$suffix") || latest_patch=""
+	read -r image tag <<<"$(split_tag "$ref")"
+	local vpre suffix series latest_patch
+	vpre=$(version_prefix "$tag")
+	suffix=$(tag_suffix "$tag")
+	series=$(minor_series "$vpre")
+	latest_patch=$(latest_dockerhub_tag "$image" "$series" "$suffix") || latest_patch=""
 
-  # Also check within the same major for a newer minor
-  local major latest_major
-  major=$(major_series "$vpre")
-  latest_major=$(latest_dockerhub_tag_major "$image" "$major" "$suffix") || latest_major=""
+	# Also check within the same major for a newer minor
+	local major latest_major
+	major=$(major_series "$vpre")
+	latest_major=$(latest_dockerhub_tag_major "$image" "$major" "$suffix") || latest_major=""
 
-  local latest
-  latest=$(max_version_tag "$latest_patch" "$latest_major")
+	local latest
+	latest=$(max_version_tag "$latest_patch" "$latest_major")
 
-  if [[ -z "$latest" ]]; then
-    echo "- ${label}: current ${image}:${tag} — no matching tags found for series ${series} (${suffix:-no-suffix})"
-    return
-  fi
+	if [[ -z "$latest" ]]; then
+		echo "- ${label}: current ${image}:${tag} — no matching tags found for series ${series} (${suffix:-no-suffix})"
+		return
+	fi
 
-  if [[ "$latest" == "$tag" ]]; then
-    echo "- ${label}: up to date (${image}:${tag})"
-  else
-    echo "- ${label}: update available"
-    echo "  current: ${image}:${tag}"
-    echo "  latest:  ${image}:${latest}"
-  fi
+	if [[ "$latest" == "$tag" ]]; then
+		echo "- ${label}: up to date (${image}:${tag})"
+	else
+		echo "- ${label}: update available"
+		echo "  current: ${image}:${tag}"
+		echo "  latest:  ${image}:${latest}"
+	fi
 }
 
 echo "Checking Docker image versions in ${DOCKERFILE_PATH}"$'\n'
@@ -234,5 +240,3 @@ compare_and_report '^FROM node:' 'Node'
 compare_and_report '^FROM elixir:' 'Elixir'
 
 echo $'\nDone.'
-
-

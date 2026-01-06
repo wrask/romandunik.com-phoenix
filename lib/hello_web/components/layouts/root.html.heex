@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <.live_title>
-      <%= @page_title %>
+      {@page_title}
     </.live_title>
 
     <meta charset="utf-8" />
@@ -33,7 +33,7 @@
       href={~p"/safari-pinned-tab.svg"}
       color="#384051"
     />
-    
+
     <link rel="manifest" href={~p"/manifest.json"} />
   </head>
   <body class="flex flex-col h-screen justify-between">
@@ -45,21 +45,24 @@
               <Heroicons.fire class="w-6 h-6 text-white" stroke-width="2" />
             </span>
             <p class="ml-3 font-medium text-white truncate">
-              Phoenix <%= @phoenix_version %>
+              Phoenix {@phoenix_version}
             </p>
             <span class="flex ml-3 p-2 rounded-lg bg-gray-900">
               <Heroicons.beaker class="w-6 h-6 text-white" stroke-width="2" />
             </span>
             <p class="ml-3 font-medium text-white truncate">
-              Elixir <%= @elixir_version %>
+              Elixir {@elixir_version}
             </p>
           </div>
           <div class="mt-2 order-3 w-full sm:mt-0 sm:w-auto">
             <div class="rounded-md shadow-sm">
               <span class="flex items-center justify-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-gray-900">
-                <Heroicons.rocket_launch class="w-6 h-6 text-white" stroke-width="2" />
+                <Heroicons.rocket_launch
+                  class="w-6 h-6 text-white"
+                  stroke-width="2"
+                />
                 <p class="ml-3 font-medium text-white truncate">
-                  RUN_MODE = <%= @run_mode %>
+                  RUN_MODE = {@run_mode}
                 </p>
               </span>
             </div>
@@ -69,7 +72,7 @@
     </div>
 
     <main class="w-full lg:max-w-screen-lg mx-auto mb-auto">
-      <%= @inner_content %>
+      {@inner_content}
     </main>
 
     <footer class="text-center mt-6 pb-6 h-10">
@@ -84,7 +87,7 @@
         <Heroicons.command_line
           class="h-6 w-6 text-orange-700 inline"
           stroke-width="2"
-        /> 
+        />
         <a class="border-b mb-1" href={@owner_site_url}>
           Roman Dunik
         </a>

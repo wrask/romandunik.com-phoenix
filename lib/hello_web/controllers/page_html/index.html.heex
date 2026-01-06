@@ -3,13 +3,23 @@
     <article class="
     space-y-2 xl:grid xl:grid-cols-4 xl:items-stretch xl:gap-x-6 xl:space-y-0
     border border-gray-300 rounded-md px-7 py-5 mx-7 bg-[#f8f8f2]">
-      <div :if={post.image} class="relative xl:col-span-1 xl:h-full w-50 h-28 rounded-md overflow-hidden">
-        <img src={post.image} alt={post.title} class="h-full w-full object-cover" />
+      <div
+        :if={post.image}
+        class="relative xl:col-span-1 xl:h-full w-50 h-28 rounded-md overflow-hidden"
+      >
+        <img
+          src={post.image}
+          alt={post.title}
+          class="h-full w-full object-cover"
+        />
         <div class="absolute inset-0 bg-black/40"></div>
         <ul class="absolute bottom-2 left-2 right-2 flex flex-wrap gap-2">
           <li :for={tag <- post.tags} class="">
-            <.link navigate={~p"/tags/#{tag}"} class="text-xs font-semibold uppercase text-white/90 bg-black/40 backdrop-blur px-2 py-0.5 rounded">
-              <%= tag %>
+            <.link
+              navigate={~p"/tags/#{tag}"}
+              class="text-xs font-semibold uppercase text-white/90 bg-black/40 backdrop-blur px-2 py-0.5 rounded"
+            >
+              {tag}
             </.link>
           </li>
         </ul>
@@ -18,26 +28,29 @@
         <div>
           <h3 class="text-2xl font-bold leading-8 tracking-tight">
             <.link navigate={~p"/posts/#{post.id}"} class="text-gray-900">
-              <%= post.title %>
+              {post.title}
             </.link>
           </h3>
           <dl>
             <dd class="text-xs font-light leading-6 text-gray-500">
-              <time datetime={post.date}><%= post.date %></time>
+              <time datetime={post.date}>{post.date}</time>
               <div class="mt-1 text-gray-500">
                 <Heroicons.eye class="w-4 h-4 inline align-text-bottom mr-1" />
-                <%= Map.get(@view_counts || %{}, post.id, 0) %>
+                {Map.get(@view_counts || %{}, post.id, 0)}
               </div>
             </dd>
           </dl>
         </div>
         <div class="prose max-w-none text-black/50">
-          <%= raw(post.description) %>
+          {raw(post.description)}
         </div>
         <ul :if={!post.image} class="flex flex-wrap">
           <li :for={tag <- post.tags} class="mr-3">
-            <.link navigate={~p"/tags/#{tag}"} class="text-sm font-light uppercase text-black/50">
-              <%= tag %>
+            <.link
+              navigate={~p"/tags/#{tag}"}
+              class="text-sm font-light uppercase text-black/50"
+            >
+              {tag}
             </.link>
           </li>
         </ul>
@@ -45,4 +58,3 @@
     </article>
   </li>
 </ul>
-

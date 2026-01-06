@@ -7,11 +7,18 @@ defmodule HelloWeb.PageController do
     %{
       elixir_version: System.version(),
       phoenix_version: Application.spec(:phoenix, :vsn),
-      run_mode: (if System.get_env("RELEASE_NAME"), do: "prod (release)", else: "dev (mix)"),
-      owner_site_url: Application.get_env(:hello, HelloWeb.Endpoint)[:owner_site_url],
-      repository_url: Application.get_env(:hello, HelloWeb.Endpoint)[:repository_url],
+      run_mode:
+        if(System.get_env("RELEASE_NAME"),
+          do: "prod (release)",
+          else: "dev (mix)"
+        ),
+      owner_site_url:
+        Application.get_env(:hello, HelloWeb.Endpoint)[:owner_site_url],
+      repository_url:
+        Application.get_env(:hello, HelloWeb.Endpoint)[:repository_url],
       page_title: "wrask blog",
-      description: "A production ready example Phoenix app that's using Docker and Docker Compose."
+      description:
+        "A production ready example Phoenix app that's using Docker and Docker Compose."
     }
   end
 
@@ -20,7 +27,8 @@ defmodule HelloWeb.PageController do
     view_counts = view_counts(posts)
 
     conn
-    |> render(:index,
+    |> render(
+      :index,
       common_variables()
       |> Map.put(:posts, posts)
       |> Map.put(:view_counts, view_counts)
@@ -35,7 +43,8 @@ defmodule HelloWeb.PageController do
     view_count = Blog.get_post_view_count(post.id)
 
     conn
-    |> render(:show,
+    |> render(
+      :show,
       common_variables()
       |> Map.put(:post, post)
       |> Map.put(:view_count, view_count)
@@ -47,7 +56,8 @@ defmodule HelloWeb.PageController do
     view_counts = view_counts(posts)
 
     conn
-    |> render(:index,
+    |> render(
+      :index,
       common_variables()
       |> Map.put(:posts, posts)
       |> Map.put(:view_counts, view_counts)
@@ -56,7 +66,7 @@ defmodule HelloWeb.PageController do
 
   def view_counts(posts) do
     posts
-      |> Enum.map(& &1.id)
-      |> Blog.get_post_view_counts()
+    |> Enum.map(& &1.id)
+    |> Blog.get_post_view_counts()
   end
 end
