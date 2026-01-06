@@ -16,5 +16,3 @@ defmodule Hello.Blog.PostView do
     |> unique_constraint(:post_id)
   end
 end
-
-

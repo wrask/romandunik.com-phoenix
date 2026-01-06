@@ -1,4 +1,7 @@
 defmodule Hello.Blog do
+  @moduledoc """
+  Blog module for managing blog posts, tags, and view tracking.
+  """
   alias Hello.Blog.Post
   alias Hello.Blog.PostView
   alias Hello.Repo
@@ -41,14 +44,19 @@ defmodule Hello.Blog do
   end
 
   def get_post_view_count(post_id) when is_binary(post_id) do
-    case Repo.one(from pv in PostView, where: pv.post_id == ^post_id, select: pv.count) do
+    case Repo.one(
+           from pv in PostView, where: pv.post_id == ^post_id, select: pv.count
+         ) do
       nil -> 0
       count -> count
     end
   end
 
   def get_post_view_counts(post_ids) when is_list(post_ids) do
-    from(pv in PostView, where: pv.post_id in ^post_ids, select: {pv.post_id, pv.count})
+    from(pv in PostView,
+      where: pv.post_id in ^post_ids,
+      select: {pv.post_id, pv.count}
+    )
     |> Repo.all()
     |> Map.new()
   end

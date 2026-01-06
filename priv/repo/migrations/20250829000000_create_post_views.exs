@@ -12,5 +12,3 @@ defmodule Hello.Repo.Migrations.CreatePostViews do
     create unique_index(:post_views, [:post_id])
   end
 end
-
-

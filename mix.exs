@@ -30,7 +30,7 @@ defmodule Hello.MixProject do
 
   defp deps do
     [
-      {:bandit, "1.10.0"},
+      {:bandit, "1.10.1"},
       {:credo, "1.7.15", only: [:dev, :test], runtime: false},
       {:earmark, "1.4.48"},
       {:ecto_sql, "3.13.4"},
