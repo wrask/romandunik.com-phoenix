@@ -10,7 +10,8 @@ defmodule HelloWeb.PageController do
       run_mode: (if System.get_env("RELEASE_NAME"), do: "prod (release)", else: "dev (mix)"),
       owner_site_url: Application.get_env(:hello, HelloWeb.Endpoint)[:owner_site_url],
       repository_url: Application.get_env(:hello, HelloWeb.Endpoint)[:repository_url],
-      page_title: "wrask blog"
+      page_title: "wrask blog",
+      description: "A production ready example Phoenix app that's using Docker and Docker Compose."
     }
   end
 
@@ -30,7 +31,7 @@ defmodule HelloWeb.PageController do
     post = Blog.get_post_by_id!(slug)
 
     Blog.increment_post_view!(post.id)
-    
+
     view_count = Blog.get_post_view_count(post.id)
 
     conn
