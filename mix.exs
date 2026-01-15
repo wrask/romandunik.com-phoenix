@@ -48,8 +48,8 @@ defmodule Hello.MixProject do
       {:phoenix_html, "4.3.0"},
       {:phoenix_live_dashboard, "0.8.7"},
       {:phoenix_live_reload, "1.6.2", only: :dev},
-      {:phoenix_live_view, "1.1.19"},
-      {:postgrex, "0.21.1"},
+      {:phoenix_live_view, "1.1.20"},
+      {:postgrex, "0.22.0"},
       {:telemetry_metrics, "1.1.0"},
       {:telemetry_poller, "1.3.0"}
     ]
