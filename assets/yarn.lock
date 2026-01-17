@@ -667,10 +667,10 @@ micromatch@^4.0.5:
     braces "^3.0.3"
     picomatch "^2.3.1"
 
-morphdom@2.7.7:
-  version "2.7.7"
-  resolved "https://registry.yarnpkg.com/morphdom/-/morphdom-2.7.7.tgz#72559af781357a4eb2169a0a578acb76ff7e8abf"
-  integrity sha512-04GmsiBcalrSCNmzfo+UjU8tt3PhZJKzcOy+r1FlGA7/zri8wre3I1WkYN9PT3sIeIKfW9bpyElA+VzOg2E24g==
+morphdom@2.7.8:
+  version "2.7.8"
+  resolved "https://registry.yarnpkg.com/morphdom/-/morphdom-2.7.8.tgz#9a81aae144136702d58cfae8226470bfd64fe74c"
+  integrity sha512-D/fR4xgGUyVRbdMGU6Nejea1RFzYxYtyurG4Fbv2Fi/daKlWKuXGLOdXtl+3eIwL110cI2hz1ZojGICjjFLgTg==
 
 mri@^1.2.0:
   version "1.2.0"
@@ -707,12 +707,12 @@ phoenix_html@4.3.0:
   resolved "https://registry.yarnpkg.com/phoenix_html/-/phoenix_html-4.3.0.tgz#f6cd15b6db2127c2ce945a4bbc7df10a1a34f982"
   integrity sha512-6vnR2Y7KxEPX1DdN59AuO98TTFtsYBqfUiUOo3NY6vyVp3o94RTawdaKtELFOKfiUD7LCEclBcpCltJM2GWuKw==
 
-phoenix_live_view@1.1.19:
-  version "1.1.19"
-  resolved "https://registry.yarnpkg.com/phoenix_live_view/-/phoenix_live_view-1.1.19.tgz#48b362e67ba98e82e861e92363dad2f7cac52c20"
-  integrity sha512-UjJTnTFbICy8lezmNmY6huySaN5M2rR2vhrVC2GEkB5PJRqLqmoC0IuPXYyQ93skIcahGosmKZcovuHvEnHVbQ==
+phoenix_live_view@1.1.20:
+  version "1.1.20"
+  resolved "https://registry.yarnpkg.com/phoenix_live_view/-/phoenix_live_view-1.1.20.tgz#e1ebab04d766ad56a1d35a488fb2efe45fd7e55c"
+  integrity sha512-v50SIRO52OTSbldb73cfyvo6381f4nZUnEnvjtDAys5UIbXlX4+cz1nI3vQqvfvsjA5oekZosedZPdavXk4oxQ==
   dependencies:
-    morphdom "2.7.7"
+    morphdom "2.7.8"
 
 picocolors@^1.1.1:
   version "1.1.1"
