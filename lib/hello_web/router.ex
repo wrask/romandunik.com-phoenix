@@ -12,7 +12,7 @@ defmodule HelloWeb.Router do
   end
 
   defp dashboard_basic_auth(conn, _opts) do
-    if Mix.env() == :prod do
+    if Application.get_env(:hello, :env) == :prod do
       opts = Application.get_env(:hello, :dashboard_auth, [])
       Plug.BasicAuth.basic_auth(conn, opts)
     else
