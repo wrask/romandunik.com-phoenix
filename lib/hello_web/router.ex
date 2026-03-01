@@ -11,6 +11,15 @@ defmodule HelloWeb.Router do
     |> Plug.Conn.put_resp_header("x-xss-protection", "1; mode=block")
   end
 
+  defp dashboard_basic_auth(conn, _opts) do
+    if Application.get_env(:hello, :env) == :prod do
+      opts = Application.get_env(:hello, :dashboard_auth, [])
+      Plug.BasicAuth.basic_auth(conn, opts)
+    else
+      conn
+    end
+  end
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -25,6 +34,10 @@ defmodule HelloWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :protect_dashboard do
+    plug :dashboard_basic_auth
+  end
+
   scope "/", HelloWeb do
     pipe_through :browser
 
@@ -36,17 +49,13 @@ defmodule HelloWeb.Router do
     get "/posts/:slug", PageController, :show
   end
 
-  # Enables LiveDashboard only for development.
-  #
-  # If you want to use the LiveDashboard in production, you should put
-  # it behind authentication and allow only admins to access it.
-  if Mix.env() in [:dev, :test] do
-    import Phoenix.LiveDashboard.Router
+  # LiveDashboard: in dev/test no auth; in prod protected by HTTP Basic Auth.
+  # Set DASHBOARD_USERNAME and DASHBOARD_PASSWORD in production.
+  import Phoenix.LiveDashboard.Router
 
-    scope "/" do
-      pipe_through :browser
-      live_dashboard "/dashboard", metrics: HelloWeb.Telemetry
-    end
+  scope "/" do
+    pipe_through [:browser, :protect_dashboard]
+    live_dashboard "/dashboard", metrics: HelloWeb.Telemetry
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development

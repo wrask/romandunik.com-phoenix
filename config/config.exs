@@ -7,7 +7,8 @@ import Config
 
 config :hello,
   ecto_repos: [Hello.Repo],
-  generators: [timestamp_type: :utc_datetime]
+  generators: [timestamp_type: :utc_datetime],
+  env: Mix.env()
 
 config :hello, HelloWeb.Endpoint,
   # Enable both ipv4 and ipv6 on all interfaces. By the way, the port is
