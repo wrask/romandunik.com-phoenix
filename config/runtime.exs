@@ -2,6 +2,11 @@ import Config
 
 url_host = System.fetch_env!("URL_HOST")
 
+# LiveDashboard HTTP Basic Auth (production only; dev/test skip auth in the router)
+config :hello, :dashboard_auth,
+  username: System.get_env("DASHBOARD_USERNAME", "dashboard_user"),
+  password: System.get_env("DASHBOARD_PASSWORD", "dashboard_password")
+
 config :hello, :dns_cluster_query, System.get_env("DNS_CLUSTER_QUERY")
 
 config :hello, HelloWeb.Endpoint,
