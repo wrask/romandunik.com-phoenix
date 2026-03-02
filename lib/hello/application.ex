@@ -10,6 +10,7 @@ defmodule Hello.Application do
       HelloWeb.Telemetry,
       {Phoenix.PubSub, name: Hello.PubSub},
       {Finch, name: Hello.Finch},
+      {Cachex, name: :hello_cache},
       HelloWeb.Endpoint
       # Start a worker by calling: Hello.Worker.start_link(arg)
       # {Hello.Worker, arg}
