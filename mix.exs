@@ -5,11 +5,9 @@ defmodule Hello.MixProject do
     [
       app: :hello,
       version: "0.1.0",
-      elixir: "~> 1.18",
+      elixir: "~> 1.19",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
-      build_path: "/mix/_build",
-      deps_path: "/mix/deps",
       aliases: aliases(),
       deps: deps(),
       test_coverage: [tool: ExCoveralls],

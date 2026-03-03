@@ -52,11 +52,15 @@ defmodule HelloWeb.PageController do
   def view_counts(posts) do
     case Cachex.get(:hello_cache, "view_counts") do
       {:ok, nil} ->
-        view_counts = posts
+        view_counts =
+          posts
           |> Enum.map(& &1.id)
           |> Blog.get_post_view_counts()
 
-        Cachex.put(:hello_cache, "view_counts", view_counts, expire: @view_counts_cache_time)
+        Cachex.put(:hello_cache, "view_counts", view_counts,
+          expire: @view_counts_cache_time
+        )
+
         view_counts
 
       {:ok, view_counts} ->
