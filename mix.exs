@@ -13,7 +13,18 @@ defmodule Hello.MixProject do
       test_coverage: [tool: ExCoveralls],
       releases: releases(),
       listeners: [Phoenix.CodeReloader]
-    ]
+    ] ++ prod_paths()
+  end
+
+  defp prod_paths do
+    if Mix.env() == :prod do
+      [
+        build_path: "/mix/_build",
+        deps_path: "/mix/deps"
+      ]
+    else
+      []
+    end
   end
 
   def application do
