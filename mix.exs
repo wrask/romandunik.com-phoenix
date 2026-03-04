@@ -41,9 +41,9 @@ defmodule Hello.MixProject do
     [
       {:bandit, "1.10.3"},
       {:cachex, "4.1.1"},
-      {:credo, "1.7.16", only: [:dev, :test], runtime: false},
+      {:credo, "1.7.17", only: [:dev, :test], runtime: false},
       {:earmark, "1.4.48"},
-      {:ecto_sql, "3.13.4"},
+      {:ecto_sql, "3.13.5"},
       {:excoveralls, "0.18.5", only: [:dev, :test]},
       {:finch, "0.21.0"},
       {:floki, "0.38.0", only: :test},
