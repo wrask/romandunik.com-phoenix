@@ -5,7 +5,8 @@
   description: "
   продолжаем тренироваться даже если кажется, что дело не в тебе <br> ⛸️ day 64
   ",
-  image: "/images/train-the-drills.webp"
+  image: "/images/train-the-drills.webp",
+  featured: true
 }
 ---
 

@@ -12,7 +12,8 @@ defmodule Hello.Blog.Post do
     :tags,
     :date,
     :path,
-    :image
+    :image,
+    :featured
   ]
 
   def build(filename, attrs, body) do
@@ -21,6 +22,11 @@ defmodule Hello.Blog.Post do
     path = path <> ".html"
     [month, day, id] = String.split(month_day_id, "-", parts: 3)
     date = Date.from_iso8601!("#{year}-#{month}-#{day}")
+
+    attrs =
+      attrs
+      |> Map.new()
+      |> Map.put_new(:featured, false)
 
     struct!(
       __MODULE__,

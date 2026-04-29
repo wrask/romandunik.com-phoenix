@@ -8,8 +8,11 @@ defmodule HelloWeb.PageController do
   @view_counts_cache_time :timer.minutes(1)
 
   def index(conn, _params) do
-    posts = Blog.list_posts()
-    view_counts = view_counts(posts)
+    {posts, view_counts} =
+      Blog.list_posts() |> posts_with_view_counts_sorted_by_views()
+
+    latest_posts = Blog.list_posts() |> Enum.take(3)
+    featured_posts = Blog.list_featured_posts()
 
     conn
     |> render(
@@ -17,6 +20,8 @@ defmodule HelloWeb.PageController do
       common_variables()
       |> Map.put(:posts, posts)
       |> Map.put(:view_counts, view_counts)
+      |> Map.put(:latest_posts, latest_posts)
+      |> Map.put(:featured_posts, featured_posts)
     )
   end
 
@@ -37,8 +42,11 @@ defmodule HelloWeb.PageController do
   end
 
   def tags(conn, %{"tag" => tag}) do
-    posts = Blog.list_posts_by_tag!(tag)
-    view_counts = view_counts(posts)
+    {posts, view_counts} =
+      Blog.list_posts_by_tag!(tag) |> posts_with_view_counts_sorted_by_views()
+
+    latest_posts = Blog.list_posts() |> Enum.take(3)
+    featured_posts = Blog.list_featured_posts()
 
     conn
     |> render(
@@ -46,7 +54,18 @@ defmodule HelloWeb.PageController do
       common_variables()
       |> Map.put(:posts, posts)
       |> Map.put(:view_counts, view_counts)
+      |> Map.put(:latest_posts, latest_posts)
+      |> Map.put(:featured_posts, featured_posts)
     )
+  end
+
+  defp posts_with_view_counts_sorted_by_views(posts) do
+    view_counts = view_counts(posts)
+
+    sorted =
+      Enum.sort_by(posts, &Map.get(view_counts, &1.id, 0), :desc)
+
+    {sorted, view_counts}
   end
 
   def view_counts(posts) do

@@ -16,8 +16,11 @@ defmodule Hello.Blog do
   @posts Enum.sort_by(@posts, & &1.date, {:desc, Date})
   @tags @posts |> Enum.flat_map(& &1.tags) |> Enum.uniq() |> Enum.sort()
 
+  @featured_posts @posts |> Enum.filter(& &1.featured) |> Enum.sort_by(& &1.date, {:desc, Date})
+
   def list_posts, do: @posts
   def list_tags, do: @tags
+  def list_featured_posts, do: @featured_posts
 
   defmodule NotFoundError do
     defexception [:message, plug_status: 404]

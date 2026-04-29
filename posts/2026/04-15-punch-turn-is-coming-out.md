@@ -3,7 +3,8 @@
   author: "Roman Dunik",
   tags: ~w(sport skating drills),
   description: "Вираж с торможением на подходе",
-  image: "/images/punch-turn.webp"
+  image: "/images/punch-turn.webp",
+  featured: true
 }
 ---
 
