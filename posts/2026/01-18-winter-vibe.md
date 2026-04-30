@@ -3,8 +3,7 @@
   author: "Roman Dunik",
   tags: ~w(sport skating winter),
   description: "Покатались на воздухе",
-  image: "/images/winter-vibe.webp",
-  featured: true
+  image: "/images/winter-vibe.webp"
 }
 ---
 
