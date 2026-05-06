@@ -53,7 +53,7 @@ defmodule Hello.MixProject do
       {:makeup, "~> 1.0"},
       {:makeup_elixir, "1.0.1"},
       {:nimble_publisher, "1.1.1"},
-      {:phoenix, "1.8.6"},
+      {:phoenix, "1.8.7"},
       {:phoenix_ecto, "4.7.0"},
       {:phoenix_html, "4.3.0"},
       {:phoenix_live_dashboard, "0.8.7"},
