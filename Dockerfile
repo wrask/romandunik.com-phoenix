@@ -1,4 +1,4 @@
-FROM node:25.9.0-trixie-slim AS assets
+FROM node:26.1-trixie-slim AS assets
 
 WORKDIR /app/assets
 
@@ -9,6 +9,7 @@ RUN apt-get update \
   && apt-get install -y --no-install-recommends build-essential \
   && rm -rf /var/lib/apt/lists/* /usr/share/doc /usr/share/man \
   && apt-get clean \
+  && npm install -g yarn@latest \
   && groupmod -g "${GID}" node && usermod -u "${UID}" -g "${GID}" node \
   && mkdir -p /node_modules && chown node:node -R /node_modules /app
 

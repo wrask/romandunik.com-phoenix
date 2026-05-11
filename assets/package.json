@@ -13,8 +13,8 @@
     "esbuild-copy-static-files": "0.1.0",
     "postcss": "8.5.14",
     "postcss-import": "16.1.1",
-    "tailwindcss": "4.2.4",
-    "@tailwindcss/cli": "4.2.4",
+    "tailwindcss": "4.3.0",
+    "@tailwindcss/cli": "4.3.0",
     "@tailwindcss/typography": "0.5.19"
   }
 }
