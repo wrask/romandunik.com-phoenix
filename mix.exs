@@ -39,13 +39,13 @@ defmodule Hello.MixProject do
 
   defp deps do
     [
-      {:bandit, "1.11.0"},
+      {:bandit, "1.11.1"},
       {:cachex, "4.1.1"},
       {:credo, "1.7.18", only: [:dev, :test], runtime: false},
       {:earmark, "1.4.48"},
       {:ecto_sql, "3.13.5"},
       {:excoveralls, "0.18.5", only: [:dev, :test]},
-      {:finch, "0.21.0"},
+      {:finch, "0.22.0"},
       {:floki, "0.38.1", only: :test},
       {:gettext, "1.0.2"},
       {:heroicons, "0.5.7"},
@@ -59,7 +59,7 @@ defmodule Hello.MixProject do
       {:phoenix_live_dashboard, "0.8.7"},
       {:phoenix_live_reload, "1.6.2", only: :dev},
       {:phoenix_live_view, "1.1.30"},
-      {:postgrex, "0.22.1"},
+      {:postgrex, "0.22.2"},
       {:telemetry_metrics, "1.1.0"},
       {:telemetry_poller, "1.3.0"}
     ]
