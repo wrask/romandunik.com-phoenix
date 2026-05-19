@@ -46,7 +46,7 @@ defmodule Hello.MixProject do
       {:ecto_sql, "3.13.5"},
       {:excoveralls, "0.18.5", only: [:dev, :test]},
       {:finch, "0.22.0"},
-      {:floki, "0.38.1", only: :test},
+      {:floki, "0.38.2", only: :test},
       {:gettext, "1.0.2"},
       {:heroicons, "0.5.7"},
       {:jason, "1.4.5"},
