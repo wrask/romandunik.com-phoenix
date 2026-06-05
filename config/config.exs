@@ -32,8 +32,4 @@ config :logger, :console,
 
 config :phoenix, :json_library, Jason
 
-config :hello, Hello.Mailer, adapter: Swoosh.Adapters.Local
-
-config :swoosh, :api_client, false
-
 import_config "#{Mix.env()}.exs"

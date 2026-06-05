@@ -5,5 +5,3 @@ config :hello, HelloWeb.Endpoint,
   server: true
 
 config :logger, level: :info
-
-config :swoosh, api_client: Swoosh.ApiClient.Finch, finch_name: Hello.Finch

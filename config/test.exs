@@ -5,5 +5,3 @@ config :hello, Hello.Repo,
   pool_size: System.schedulers_online() * 2
 
 config :logger, level: :warn
-
-config :hello, Hello.Mailer, adapter: Swoosh.Adapters.Test
