@@ -1,8 +1,8 @@
-FROM node:26.3-trixie-slim AS assets
+FROM node:26.3.0-trixie-slim AS assets
 
 WORKDIR /app/assets
 
-ARG UID=1000  
+ARG UID=1000
 ARG GID=1000
 
 RUN apt-get update \
@@ -31,7 +31,7 @@ RUN if [ "${NODE_ENV}" != "development" ]; then \
 
 ###############################################################################
 
-FROM elixir:1.19.5-slim AS dev
+FROM elixir:1.20.0-slim AS dev
 
 WORKDIR /app
 
@@ -81,7 +81,7 @@ CMD ["iex", "-S", "mix", "phx.server"]
 
 ###############################################################################
 
-FROM elixir:1.19.5-slim AS prod
+FROM elixir:1.20.0-slim AS prod
 
 WORKDIR /app
 

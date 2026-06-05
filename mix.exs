@@ -5,7 +5,7 @@ defmodule Hello.MixProject do
     [
       app: :hello,
       version: "0.1.0",
-      elixir: "~> 1.19",
+      elixir: "~> 1.20",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
@@ -41,7 +41,7 @@ defmodule Hello.MixProject do
     [
       {:bandit, "1.11.1"},
       {:cachex, "4.1.1"},
-      {:credo, "1.7.18", only: [:dev, :test], runtime: false},
+      {:credo, "1.7.19", only: [:dev, :test], runtime: false},
       {:earmark, "1.4.49"},
       {:ecto_sql, "3.14.0"},
       {:excoveralls, "0.18.5", only: [:dev, :test]},
