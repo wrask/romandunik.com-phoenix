@@ -81,6 +81,8 @@ lint:shell() {
 		! -path "./.git/*" \
 		! -path "./assets/*" \
 		! -path "./priv/static/*" \
+		! -path "./deps/*" \
+		! -name "*.eex" \
 		-exec grep --quiet '^#!.*sh' {} \; -exec "${cmd[@]}" {} +
 }
 

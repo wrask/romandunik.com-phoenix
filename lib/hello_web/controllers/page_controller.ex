@@ -64,22 +64,29 @@ defmodule HelloWeb.PageController do
 
     sorted =
       Enum.sort(posts, fn a, b ->
-        va = Map.get(view_counts, a.id, 0)
-        vb = Map.get(view_counts, b.id, 0)
-
-        cond do
-          va > vb -> true
-          va < vb -> false
-          true ->
-            case Date.compare(a.date, b.date) do
-              :gt -> true
-              :lt -> false
-              :eq -> a.id <= b.id
-            end
-        end
+        compare_posts_by_views(a, b, view_counts)
       end)
 
     {sorted, view_counts}
+  end
+
+  defp compare_posts_by_views(a, b, view_counts) do
+    va = Map.get(view_counts, a.id, 0)
+    vb = Map.get(view_counts, b.id, 0)
+
+    cond do
+      va > vb -> true
+      va < vb -> false
+      true -> compare_posts_by_date(a, b)
+    end
+  end
+
+  defp compare_posts_by_date(a, b) do
+    case Date.compare(a.date, b.date) do
+      :gt -> true
+      :lt -> false
+      :eq -> a.id <= b.id
+    end
   end
 
   def view_counts(posts) do

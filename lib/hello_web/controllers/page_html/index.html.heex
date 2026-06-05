@@ -38,7 +38,10 @@
             <div class="flex flex-col flex-1 min-h-0 space-y-3 px-5 py-5">
               <div>
                 <h3 class="text-xl font-bold leading-snug tracking-tight">
-                  <.link navigate={~p"/posts/#{post.id}"} class="text-gray-900 hover:underline">
+                  <.link
+                    navigate={~p"/posts/#{post.id}"}
+                    class="text-gray-900 hover:underline"
+                  >
                     {post.title}
                   </.link>
                 </h3>
@@ -55,7 +58,10 @@
               <div class="prose prose-sm max-w-none text-black/50 flex-1">
                 {raw(post.description)}
               </div>
-              <ul :if={!post.image} class="flex flex-wrap gap-x-3 gap-y-1 mt-auto pt-2">
+              <ul
+                :if={!post.image}
+                class="flex flex-wrap gap-x-3 gap-y-1 mt-auto pt-2"
+              >
                 <li :for={tag <- post.tags} class="">
                   <.link
                     navigate={~p"/tags/#{tag}"}
@@ -80,7 +86,8 @@
           <h2 class="text-xs font-semibold uppercase tracking-wider text-gray-600 shrink-0">
             Featured
           </h2>
-          <div class="flex-1 min-w-0 h-0.5 bg-gray-200" aria-hidden="true"></div>
+          <div class="flex-1 min-w-0 h-0.5 bg-gray-200" aria-hidden="true">
+          </div>
         </div>
         <ul class="space-y-4 list-none m-0">
           <li
@@ -122,7 +129,8 @@
           <h2 class="text-xs font-semibold uppercase tracking-wider text-gray-600 shrink-0">
             Latest
           </h2>
-          <div class="flex-1 min-w-0 h-0.5 bg-gray-200" aria-hidden="true"></div>
+          <div class="flex-1 min-w-0 h-0.5 bg-gray-200" aria-hidden="true">
+          </div>
         </div>
         <ul class="space-y-4 list-none m-0">
           <li
