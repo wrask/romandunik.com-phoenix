@@ -39,7 +39,7 @@ defmodule Hello.MixProject do
 
   defp deps do
     [
-      {:bandit, "1.11.1"},
+      {:bandit, "1.12.0"},
       {:cachex, "4.1.1"},
       {:credo, "1.7.19", only: [:dev, :test], runtime: false},
       {:earmark, "1.4.49"},
@@ -52,7 +52,7 @@ defmodule Hello.MixProject do
       {:jason, "1.4.5"},
       {:makeup, "~> 1.0"},
       {:makeup_elixir, "1.0.1"},
-      {:nimble_publisher, "1.1.1"},
+      {:nimble_publisher, "2.0.0"},
       {:phoenix, "1.8.7"},
       {:phoenix_ecto, "4.7.0"},
       {:phoenix_html, "4.3.0"},
