@@ -45,7 +45,7 @@ defmodule Hello.MixProject do
       {:earmark, "1.4.49"},
       {:ecto_sql, "3.14.0"},
       {:excoveralls, "0.18.5", only: [:dev, :test]},
-      {:finch, "0.22.0"},
+      {:finch, "0.23.0"},
       {:floki, "0.38.4", only: :test},
       {:gettext, "1.0.2"},
       {:heroicons, "0.5.7"},
