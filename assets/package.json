@@ -4,14 +4,14 @@
   "dependencies": {
     "phoenix": "1.8.9",
     "phoenix_html": "4.3.0",
-    "phoenix_live_view": "1.2.6",
+    "phoenix_live_view": "1.2.7",
     "topbar": "3.0.1"
   },
   "devDependencies": {
     "autoprefixer": "10.5.2",
     "esbuild": "0.28.1",
     "esbuild-copy-static-files": "0.1.0",
-    "postcss": "8.5.16",
+    "postcss": "8.5.19",
     "postcss-import": "16.1.1",
     "tailwindcss": "4.3.2",
     "@tailwindcss/cli": "4.3.2",

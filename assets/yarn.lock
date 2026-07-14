@@ -712,10 +712,10 @@ phoenix_html@4.3.0:
   resolved "https://registry.yarnpkg.com/phoenix_html/-/phoenix_html-4.3.0.tgz#f6cd15b6db2127c2ce945a4bbc7df10a1a34f982"
   integrity sha512-6vnR2Y7KxEPX1DdN59AuO98TTFtsYBqfUiUOo3NY6vyVp3o94RTawdaKtELFOKfiUD7LCEclBcpCltJM2GWuKw==
 
-phoenix_live_view@1.2.6:
-  version "1.2.6"
-  resolved "https://registry.yarnpkg.com/phoenix_live_view/-/phoenix_live_view-1.2.6.tgz#2062cef0871a796c7f9658375b3da8c23a8f6fcc"
-  integrity sha512-5CkZqsPcl9oFU7UqrsZsO+of5TUROh3aL+9T9GC77w2iVyqsRbcPxm8eU0qJXW2thOOJjgZzCbEgBUmnMzO1Dg==
+phoenix_live_view@1.2.7:
+  version "1.2.7"
+  resolved "https://registry.yarnpkg.com/phoenix_live_view/-/phoenix_live_view-1.2.7.tgz#fec203ba8f19e600dbf0d24f601df99511067d83"
+  integrity sha512-atP91G/mDrYZpcPbIZbX5m4jXHks7uJ9VeVGp/cFq22iQZP3ipD9OkHxoeyC2emzoH4imbmlWwlmIyz+ZtNJgA==
   dependencies:
     morphdom "2.7.8"
 
@@ -756,10 +756,10 @@ postcss-value-parser@^4.0.0, postcss-value-parser@^4.2.0:
   resolved "https://registry.yarnpkg.com/postcss-value-parser/-/postcss-value-parser-4.2.0.tgz#723c09920836ba6d3e5af019f92bc0971c02e514"
   integrity sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==
 
-postcss@8.5.16:
-  version "8.5.16"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.5.16.tgz#1230ce0b5df354c24c0ea45f99ce5f6a88279d28"
-  integrity sha512-vuwillviilfKZsg0VGj5R/YwwcHx4SLsIOI/7K6mQkWx+l5cUHTjj5g0AasTBcyXsbfTgrwsUNmVUb5xVwyPwg==
+postcss@8.5.19:
+  version "8.5.19"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.5.19.tgz#45ad5cfde499408e20147348237551381a922037"
+  integrity sha512-Mz8SaolMd8nB+G13WkORcxQKHZ/NE4xXevtkJHVuG+guo9/wYKlIMTKAqGdEmYOXR2ijPjTYNHssizdaVSUNdQ==
   dependencies:
     nanoid "^3.3.12"
     picocolors "^1.1.1"
