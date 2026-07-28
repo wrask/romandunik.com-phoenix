@@ -39,7 +39,7 @@ defmodule Hello.MixProject do
 
   defp deps do
     [
-      {:bandit, "1.12.3"},
+      {:bandit, "1.12.4"},
       {:cachex, "4.1.1"},
       {:credo, "1.7.19", only: [:dev, :test], runtime: false},
       {:ecto_sql, "3.14.0"},
@@ -51,13 +51,13 @@ defmodule Hello.MixProject do
       {:jason, "1.4.5"},
       {:makeup, "1.2.2"},
       {:makeup_elixir, "1.0.1"},
-      {:nimble_publisher, "2.0.0"},
+      {:nimble_publisher, "2.1.0"},
       {:phoenix, "1.8.9"},
       {:phoenix_ecto, "4.7.0"},
       {:phoenix_html, "4.3.0"},
       {:phoenix_live_dashboard, "0.8.7"},
       {:phoenix_live_reload, "1.6.2", only: :dev},
-      {:phoenix_live_view, "1.2.7"},
+      {:phoenix_live_view, "1.2.8"},
       {:postgrex, "0.22.3"},
       {:telemetry_metrics, "1.1.0"},
       {:telemetry_poller, "1.3.0"}

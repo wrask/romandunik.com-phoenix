@@ -672,10 +672,9 @@ micromatch@^4.0.5:
     braces "^3.0.3"
     picomatch "^2.3.1"
 
-morphdom@2.7.8:
+"morphdom@github:SteffenDE/morphdom#sd-keyed-root":
   version "2.7.8"
-  resolved "https://registry.yarnpkg.com/morphdom/-/morphdom-2.7.8.tgz#9a81aae144136702d58cfae8226470bfd64fe74c"
-  integrity sha512-D/fR4xgGUyVRbdMGU6Nejea1RFzYxYtyurG4Fbv2Fi/daKlWKuXGLOdXtl+3eIwL110cI2hz1ZojGICjjFLgTg==
+  resolved "https://codeload.github.com/SteffenDE/morphdom/tar.gz/92f9125ed8c1a52861719544c83314cd062d65aa"
 
 mri@^1.2.0:
   version "1.2.0"
@@ -712,12 +711,12 @@ phoenix_html@4.3.0:
   resolved "https://registry.yarnpkg.com/phoenix_html/-/phoenix_html-4.3.0.tgz#f6cd15b6db2127c2ce945a4bbc7df10a1a34f982"
   integrity sha512-6vnR2Y7KxEPX1DdN59AuO98TTFtsYBqfUiUOo3NY6vyVp3o94RTawdaKtELFOKfiUD7LCEclBcpCltJM2GWuKw==
 
-phoenix_live_view@1.2.7:
-  version "1.2.7"
-  resolved "https://registry.yarnpkg.com/phoenix_live_view/-/phoenix_live_view-1.2.7.tgz#fec203ba8f19e600dbf0d24f601df99511067d83"
-  integrity sha512-atP91G/mDrYZpcPbIZbX5m4jXHks7uJ9VeVGp/cFq22iQZP3ipD9OkHxoeyC2emzoH4imbmlWwlmIyz+ZtNJgA==
+phoenix_live_view@1.2.8:
+  version "1.2.8"
+  resolved "https://registry.yarnpkg.com/phoenix_live_view/-/phoenix_live_view-1.2.8.tgz#014e5ebdab6877fb69adfcdd8785bf9db27db30b"
+  integrity sha512-annJ0s4pLqbDg0poMCnneeSmiCDIb9LOAG/dEJNx8dz15KrrqTstw2+28eUNmgXPRbLzrZd4xFRzguXowIMZoQ==
   dependencies:
-    morphdom "2.7.8"
+    morphdom "github:SteffenDE/morphdom#sd-keyed-root"
 
 picocolors@^1.1.1:
   version "1.1.1"
