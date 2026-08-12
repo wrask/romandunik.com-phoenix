@@ -52,7 +52,7 @@ defmodule Hello.MixProject do
       {:makeup, "1.2.2"},
       {:makeup_elixir, "1.0.1"},
       {:nimble_publisher, "2.1.0"},
-      {:phoenix, "1.8.10"},
+      {:phoenix, "1.8.11"},
       {:phoenix_ecto, "4.7.0"},
       {:phoenix_html, "4.3.0"},
       {:phoenix_live_dashboard, "0.8.7"},
