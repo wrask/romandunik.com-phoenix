@@ -52,14 +52,14 @@ defmodule Hello.MixProject do
       {:makeup, "1.2.2"},
       {:makeup_elixir, "1.0.1"},
       {:nimble_publisher, "2.1.0"},
-      {:phoenix, "1.8.12"},
+      {:phoenix, "1.8.13"},
       {:phoenix_ecto, "4.7.0"},
       {:phoenix_html, "4.3.0"},
       {:phoenix_live_dashboard, "0.9.0"},
       {:phoenix_live_reload, "1.7.0", only: :dev},
       {:phoenix_live_view, "1.2.10"},
       {:postgrex, "0.22.4"},
-      {:telemetry_metrics, "1.1.0"},
+      {:telemetry_metrics, "1.2.0"},
       {:telemetry_poller, "1.3.0"}
     ]
   end

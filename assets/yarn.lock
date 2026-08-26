@@ -697,10 +697,10 @@ path-parse@^1.0.6:
   resolved "https://registry.yarnpkg.com/path-parse/-/path-parse-1.0.7.tgz#fbc114b60ca42b30d9daf5858e4bd68bbedb6735"
   integrity sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==
 
-phoenix@1.8.12:
-  version "1.8.12"
-  resolved "https://registry.yarnpkg.com/phoenix/-/phoenix-1.8.12.tgz#7af15bc80bdb16ae284cfb8790ede48744d34aca"
-  integrity sha512-svUniHb83aGh1XpYWHe4fkbfrGd6xa26TWO/3clkuNplXwgjxh7RI7GOWxf28VAgDWwQ2/yN8PxIa5dqjXOcAA==
+phoenix@1.8.13:
+  version "1.8.13"
+  resolved "https://registry.yarnpkg.com/phoenix/-/phoenix-1.8.13.tgz#dfbe5ccfbf8777ec8f78179112de181f26f905ee"
+  integrity sha512-5UByH7ejdsPLd6eihwzV3L3i6YX4mHUtFjLaE8S1YuA+3aBj37rzH6KDjxBuPlB04o9ZHVz+PKRiUg3aYYvzmQ==
 
 phoenix_html@4.3.0:
   version "4.3.0"
