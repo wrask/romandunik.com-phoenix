@@ -31,7 +31,7 @@ RUN if [ "${NODE_ENV}" != "development" ]; then \
 
 ###############################################################################
 
-FROM elixir:1.20.3-slim AS dev
+FROM elixir:1.20.4-slim AS dev
 
 WORKDIR /app
 
@@ -81,7 +81,7 @@ CMD ["iex", "-S", "mix", "phx.server"]
 
 ###############################################################################
 
-FROM elixir:1.20.3-slim AS prod
+FROM elixir:1.20.4-slim AS prod
 
 WORKDIR /app
 
