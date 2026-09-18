@@ -4,11 +4,11 @@
   "dependencies": {
     "phoenix": "1.8.14",
     "phoenix_html": "4.3.0",
-    "phoenix_live_view": "1.2.11",
+    "phoenix_live_view": "1.2.12",
     "topbar": "3.0.1"
   },
   "devDependencies": {
-    "autoprefixer": "10.6.0",
+    "autoprefixer": "10.6.1",
     "esbuild": "0.28.2",
     "esbuild-copy-static-files": "0.1.0",
     "postcss": "8.5.28",
