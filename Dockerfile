@@ -10,7 +10,7 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/* /usr/share/doc /usr/share/man \
   && apt-get clean \
   && npm install -g yarn@latest \
-  && groupmod -g "${DOCKER_GID}" node && usermod -u "${DOCKER_UID}" -g "${DOCKER_GID}" node \
+  && groupmod -o -g "${DOCKER_GID}" node && usermod -o -u "${DOCKER_UID}" -g "${DOCKER_GID}" node \
   && mkdir -p /node_modules && chown node:node -R /node_modules /app
 
 USER node
@@ -42,8 +42,8 @@ RUN apt-get update \
   && apt-get install -y --no-install-recommends ca-certificates build-essential curl git inotify-tools \
   && rm -rf /var/lib/apt/lists/* /usr/share/doc /usr/share/man \
   && apt-get clean \
-  && groupadd -g "${DOCKER_GID}" elixir \
-  && useradd --create-home --no-log-init -u "${DOCKER_UID}" -g "${DOCKER_GID}" elixir \
+  && groupadd -o -g "${DOCKER_GID}" elixir \
+  && useradd --create-home --no-log-init -o -u "${DOCKER_UID}" -g elixir elixir \
   && mkdir -p /mix && chown elixir:elixir -R /mix /app
 
 USER elixir
@@ -92,8 +92,8 @@ RUN apt-get update \
   && apt-get install -y --no-install-recommends curl \
   && rm -rf /var/lib/apt/lists/* /usr/share/doc /usr/share/man \
   && apt-get clean \
-  && groupadd -g "${DOCKER_GID}" elixir \
-  && useradd --create-home --no-log-init -u "${DOCKER_UID}" -g "${DOCKER_GID}" elixir \
+  && groupadd -o -g "${DOCKER_GID}" elixir \
+  && useradd --create-home --no-log-init -o -u "${DOCKER_UID}" -g elixir elixir \
   && chown elixir:elixir -R /app
 
 USER elixir
