@@ -2,16 +2,16 @@
   "name": "hello",
   "private": true,
   "dependencies": {
-    "phoenix": "1.8.15",
+    "phoenix": "1.8.16",
     "phoenix_html": "4.3.0",
-    "phoenix_live_view": "1.2.12",
+    "phoenix_live_view": "1.2.13",
     "topbar": "3.0.1"
   },
   "devDependencies": {
-    "autoprefixer": "10.6.1",
+    "autoprefixer": "10.6.2",
     "esbuild": "0.28.2",
     "esbuild-copy-static-files": "0.1.0",
-    "postcss": "8.5.30",
+    "postcss": "8.5.32",
     "postcss-import": "17.0.1",
     "tailwindcss": "4.3.3",
     "@tailwindcss/cli": "4.3.3",
